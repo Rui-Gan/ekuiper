@@ -26,25 +26,25 @@ default:
 #    SkipCertVerify: true/false
 
 #Override the global configurations
-zmq_conf: #Conf_key
-  protocol: tcp
-  server: localhost
-  port: 5563
-  topic: events
-  type: zero
-  messageType: event
+#zmq_conf: #Conf_key
+#  protocol: tcp
+#  server: localhost
+#  port: 5563
+#  topic: events
+#  type: zero
+#  messageType: event
 
-application_conf: #Conf_key
-  protocol: tcp
-  server: localhost
-  port: 5571
-  topic: application
-  type: zero
-  messageType: request
+#application_conf: #Conf_key
+#  protocol: tcp
+#  server: localhost
+#  port: 5571
+#  topic: application
+#  type: zero
+#  messageType: request
 
 mqtt_conf: #Conf_key
   protocol: tcp
-  server: 127.0.0.1
+  server: broker.emqx.io
   port: 1883
   topic: events
   type: mqtt
@@ -53,7 +53,7 @@ mqtt_conf: #Conf_key
 
 share_conf: #Conf_key
   protocol: tcp
-  server: 127.0.0.1
+  server: broker.emqx.io
   port: 1883
   topic: events
   type: mqtt

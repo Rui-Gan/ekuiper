@@ -19,11 +19,12 @@ package edgex
 
 import (
 	"fmt"
-	"github.com/edgexfoundry/go-mod-messaging/v2/messaging"
-	"github.com/edgexfoundry/go-mod-messaging/v2/pkg/types"
+	"strings"
+
+	"github.com/edgexfoundry/go-mod-messaging/v3/messaging"
+	"github.com/edgexfoundry/go-mod-messaging/v3/pkg/types"
 	"github.com/lf-edge/ekuiper/internal/conf"
 	"github.com/lf-edge/ekuiper/pkg/cast"
-	"strings"
 )
 
 type EdgexClient struct {
@@ -89,9 +90,8 @@ func (es *EdgexClient) CfgValidate(props map[string]interface{}) error {
 		edgeAddr = c.Server
 	}
 
-	if c.Type != messaging.ZeroMQ && c.Type != messaging.MQTT &&
-		c.Type != messaging.Redis && c.Type != messaging.NatsCore &&
-		c.Type != messaging.NatsJetStream {
+	if c.Type != messaging.MQTT && c.Type != messaging.Redis &&
+		c.Type != messaging.NatsCore && c.Type != messaging.NatsJetStream {
 		return fmt.Errorf("specified wrong type value %s", c.Type)
 	}
 	if c.Port < 0 {
@@ -99,12 +99,7 @@ func (es *EdgexClient) CfgValidate(props map[string]interface{}) error {
 	}
 
 	mbconf := types.MessageBusConfig{
-		SubscribeHost: types.HostInfo{
-			Host:     edgeAddr,
-			Port:     c.Port,
-			Protocol: c.Protocol,
-		},
-		PublishHost: types.HostInfo{
+		Broker: types.HostInfo{
 			Host:     edgeAddr,
 			Port:     c.Port,
 			Protocol: c.Protocol,
