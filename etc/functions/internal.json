@@ -2953,7 +2953,7 @@
 				"optional": false,
 				"control": "select",
 				"type": "string",
-				"values": ["zlib"],
+				"values": ["zlib","gzip","flate"],
 				"hint": {
 					"en_US": "The type of compression",
 					"zh_CN": "压缩方法"
@@ -3006,7 +3006,7 @@
 				"optional": false,
 				"control": "select",
 				"type": "string",
-				"values": ["zlib"],
+				"values": ["zlib","gzip","flate"],
 				"hint": {
 					"en_US": "The type of decompression",
 					"zh_CN": "解压缩方法"
@@ -3385,6 +3385,29 @@
 			"label": {
 				"en_US": "Current Timestamp",
 				"zh_CN": "时间戳"
+			}
+		}
+	}, {
+		"name": "rule_id",
+		"example": "rule_id()",
+		"hint": {
+			"en_US": "Returns the ID of the currently matched rule",
+			"zh_CN": "返回当前匹配到的规则的ID。"
+		},
+		"args": [],
+		"return": {
+			"type": "string",
+			"hint": {
+				"en_US": "ID of currently matched rule",
+				"zh_CN": "当前匹配到的规则的ID"
+			}
+		},
+		"node": {
+			"category": "function",
+			"icon": "iconPath",
+			"label": {
+				"en_US": "Rule ID",
+				"zh_CN": "规则 ID"
 			}
 		}
 	}, {
