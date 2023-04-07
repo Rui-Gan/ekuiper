@@ -54,6 +54,7 @@ github.com/eclipse/paho.mqtt.golang v1.4.2/go.mod h1:JGt0RsEwEX+Xa/agj90YJ9d9DH2
 github.com/edgexfoundry/go-mod-core-contracts/v2 v2.3.0 h1:8Svk1HTehXEgwxgyA4muVhSkP3D9n1q+oSHI3B1Ac90=
 github.com/edgexfoundry/go-mod-core-contracts/v2 v2.3.0/go.mod h1:4/e61acxVkhQWCTjQ4XcHVJDnrMDloFsZZB1B6STCRw=
 github.com/edgexfoundry/go-mod-core-contracts/v3 v3.0.0-dev.35 h1:XQgLXhpZ03JJAz4BvH371jQvFmiWcRI9wS90rE/PtS8=
+github.com/edgexfoundry/go-mod-core-contracts/v3 v3.0.0-dev.35/go.mod h1:1YS2J5NfPCd7TYBk0alu+RR5EBzBb+bnG0KF1qNRQYY=
 github.com/edgexfoundry/go-mod-messaging/v3 v3.0.0-dev.21 h1:MfTckIw5zlJ6CQCy43nPO8L4P98l0Sw4y2EVxtpoGgg=
 github.com/edgexfoundry/go-mod-messaging/v3 v3.0.0-dev.21/go.mod h1:1YN4ZbgyUSPzdgFjoa2jAyxSMxThyXfUfexcoAIkdk0=
 github.com/felixge/httpsnoop v1.0.1/go.mod h1:m8KPJKqk1gH5J9DgRY2ASl2lWCfGKXixSwevea8zH2U=

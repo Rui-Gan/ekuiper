@@ -9,6 +9,7 @@ require (
 	github.com/dop251/goja v0.0.0-20230226152633-7c93113e17ac
 	github.com/eclipse/paho.mqtt.golang v1.4.2
 	github.com/edgexfoundry/go-mod-core-contracts/v2 v2.3.0
+	github.com/edgexfoundry/go-mod-core-contracts/v3 v3.0.0-dev.35
 	github.com/edgexfoundry/go-mod-messaging/v3 v3.0.0-dev.21
 	github.com/fxamacker/cbor/v2 v2.4.0
 	github.com/gdexlab/go-render v1.0.1
