@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<httpSample t="32" it="0" lt="32" ct="27" ts="1681098051923" s="true" lb="API_CreateStream" rc="201" rm="Created" tn="Rules 1-1" dt="text" by="164" sby="274" ng="1" na="2">
+  <assertionResult>
+    <name>Response Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/streams</java.net.URL>
+</httpSample>
+<httpSample t="3" it="0" lt="3" ct="1" ts="1681098052462" s="true" lb="API_CreateRule" rc="201" rm="Created" tn="Rules 1-1" dt="text" by="177" sby="561" ng="1" na="2">
+  <assertionResult>
+    <name>Response Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/rules</java.net.URL>
+</httpSample>
+<httpSample t="2" it="0" lt="1" ct="1" ts="1681098052966" s="true" lb="API_GetRuleStatus" rc="200" rm="OK" tn="Rules 1-1" dt="text" by="1422" sby="137" ng="1" na="2">
+  <assertionResult>
+    <name>JSON Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/rules/rule1/status</java.net.URL>
+</httpSample>
+<sample t="15688" it="0" lt="0" ct="0" ts="1681098051330" s="true" lb="OS Process Sampler" rc="0" rm="OK" tn="Result 2-1" dt="text" by="547" sby="0" ng="1" na="2">
+  <assertionResult>
+    <name>device Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <assertionResult>
+    <name>humidity value Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <assertionResult>
+    <name>temperature Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <assertionResult>
+    <name>Humidity name assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <assertionResult>
+    <name>temperature name assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+<sample t="15018" it="0" lt="0" ct="0" ts="1681098053499" s="true" lb="OS Process Sampler" rc="0" rm="OK" tn="Rules 1-1" dt="text" by="32783" sby="0" ng="1" na="1"/>
+<httpSample t="2" it="0" lt="2" ct="1" ts="1681098074018" s="true" lb="API_GetRuleStatus" rc="200" rm="OK" tn="Rules 1-1" dt="text" by="1535" sby="137" ng="1" na="1">
+  <assertionResult>
+    <name>JSON Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/rules/rule1/status</java.net.URL>
+</httpSample>
+<httpSample t="4" it="0" lt="4" ct="1" ts="1681098074521" s="true" lb="API_DropRule" rc="200" rm="OK" tn="Rules 1-1" dt="text" by="158" sby="216" ng="1" na="1">
+  <assertionResult>
+    <name>Response Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/rules/rule1</java.net.URL>
+</httpSample>
+<httpSample t="1" it="0" lt="1" ct="0" ts="1681098075026" s="true" lb="API_Drop_Stream" rc="200" rm="OK" tn="Rules 1-1" dt="text" by="159" sby="217" ng="1" na="1">
+  <assertionResult>
+    <name>Response Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/streams/demo</java.net.URL>
+</httpSample>
+<sample t="15062" it="8635" lt="43" ct="31" ts="1681098051330" s="true" lb="Rule" rc="200" rm="Number of samples in transaction : 7, number of failing samples : 0" tn="Rules 1-1" dt="" by="36398" sby="1542" ng="1" na="1"/>
+
+<httpSample t="29" it="0" lt="29" ct="24" ts="1681098099739" s="true" lb="API_CreateStream" rc="201" rm="Created" tn="Rules 1-1" dt="text" by="164" sby="274" ng="1" na="2">
+  <assertionResult>
+    <name>Response Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/streams</java.net.URL>
+</httpSample>
+<httpSample t="3" it="0" lt="3" ct="1" ts="1681098100275" s="true" lb="API_CreateRule" rc="201" rm="Created" tn="Rules 1-1" dt="text" by="177" sby="578" ng="1" na="2">
+  <assertionResult>
+    <name>Response Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/rules</java.net.URL>
+</httpSample>
+<httpSample t="2" it="0" lt="2" ct="0" ts="1681098100779" s="true" lb="API_GetRuleStatus" rc="200" rm="OK" tn="Rules 1-1" dt="text" by="1727" sby="137" ng="1" na="2">
+  <assertionResult>
+    <name>JSON Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/rules/rule1/status</java.net.URL>
+</httpSample>
+<sample t="15666" it="0" lt="0" ct="0" ts="1681098099164" s="false" lb="OS Process Sampler" rc="0" rm="OK" tn="Result 2-1" dt="text" by="626" sby="0" ng="1" na="2">
+  <assertionResult>
+    <name>device Assertion</name>
+    <failure>true</failure>
+    <error>false</error>
+    <failureMessage>No results for path: $[&apos;deviceName&apos;]</failureMessage>
+  </assertionResult>
+  <assertionResult>
+    <name>humidity value Assertion</name>
+    <failure>true</failure>
+    <error>false</error>
+    <failureMessage>Missing property in path $[&apos;readings&apos;]</failureMessage>
+  </assertionResult>
+  <assertionResult>
+    <name>temperature Assertion</name>
+    <failure>true</failure>
+    <error>false</error>
+    <failureMessage>Missing property in path $[&apos;readings&apos;]</failureMessage>
+  </assertionResult>
+  <assertionResult>
+    <name>Humidity name assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <assertionResult>
+    <name>temperature name assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+<sample t="15016" it="0" lt="0" ct="0" ts="1681098101312" s="true" lb="OS Process Sampler" rc="0" rm="OK" tn="Rules 1-1" dt="text" by="32783" sby="0" ng="1" na="1"/>
+<httpSample t="1" it="0" lt="1" ct="1" ts="1681098121829" s="true" lb="API_GetRuleStatus" rc="200" rm="OK" tn="Rules 1-1" dt="text" by="1869" sby="137" ng="1" na="1">
+  <assertionResult>
+    <name>JSON Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+    <failureMessage></failureMessage>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/rules/rule1/status</java.net.URL>
+</httpSample>
+<httpSample t="2" it="0" lt="2" ct="1" ts="1681098122333" s="true" lb="API_DropRule" rc="200" rm="OK" tn="Rules 1-1" dt="text" by="158" sby="216" ng="1" na="1">
+  <assertionResult>
+    <name>Response Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/rules/rule1</java.net.URL>
+</httpSample>
+<httpSample t="1" it="0" lt="1" ct="1" ts="1681098122836" s="true" lb="API_Drop_Stream" rc="200" rm="OK" tn="Rules 1-1" dt="text" by="159" sby="217" ng="1" na="1">
+  <assertionResult>
+    <name>Response Assertion</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+  <java.net.URL>http://127.0.0.1:9081/streams/demo</java.net.URL>
+</httpSample>
+<sample t="15054" it="8622" lt="38" ct="28" ts="1681098099163" s="true" lb="Rule" rc="200" rm="Number of samples in transaction : 7, number of failing samples : 0" tn="Rules 1-1" dt="" by="37037" sby="1559" ng="1" na="1"/>
+
+</testResults>
