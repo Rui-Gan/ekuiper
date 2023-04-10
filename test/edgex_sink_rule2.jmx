@@ -146,7 +146,8 @@
         &quot;connectionSelector&quot;: &quot;edgex.redisMsgBus&quot;,&#xd;
         &quot;topic&quot;: &quot;result&quot;,&#xd;
         &quot;metadata&quot;: &quot;edgex_meta&quot;,&#xd;
-        &quot;contentType&quot;: &quot;application/json&quot;&#xd;
+        &quot;contentType&quot;: &quot;application/json&quot;,&#xd;
+        &quot;messageType&quot;: &quot;request&quot;&#xd;
       }&#xd;
     },&#xd;
     {&#xd;
