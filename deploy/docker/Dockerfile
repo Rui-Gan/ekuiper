@@ -33,7 +33,7 @@ ARG KUIPER_USER="kuiper"
 ARG KUIPER_USER_ID="1001"
 
 # (root) Add packages and "kuiper" user
-RUN apk add sed libzmq
+RUN apk add sed
 
 WORKDIR ${KUIPER_HOME}
 
