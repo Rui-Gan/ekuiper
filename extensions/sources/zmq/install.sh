@@ -50,7 +50,7 @@ case $DISTRO in \
     Debian|Ubuntu|Raspbian ) \
 	apt update \
 	&& apt upgrade \
-        && apt install -y libzmq3-dev 2> /dev/null \
+        && apt install -y pkg-config libczmq-dev 2> /dev/null \
     ;; \
     Alpine ) \
         apk add libzmq \

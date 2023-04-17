@@ -26,6 +26,11 @@ OS=$(sed -n '/^ID=/p' /etc/os-release | sed -r 's/ID=(.*)/\1/g')
 
 pre(){
     mkdir -p _plugins/$OS/$PLUGIN_TYPE
+    if [  $(cat etc/$PLUGIN_TYPE/$PLUGIN_NAME.json | jq -r ".libs") != 'null' ]; then
+        for lib in $(cat etc/$PLUGIN_TYPE/$PLUGIN_NAME.json | jq -r ".libs[]"); do
+            go get $lib;
+        done
+    fi
 }
 
 post(){
@@ -40,6 +45,15 @@ post(){
 
 build(){
     case $PLUGIN_NAME in
+        zmq )
+          if [ "$OS" = "debian" ]; then
+            apt update && apt install -y pkg-config libczmq-dev
+          fi;
+          if [ "$OS" = "alpine" ]; then
+            apk add pkgconfig zeromq-dev
+          fi;
+          go build -trimpath --buildmode=plugin -o extensions/$PLUGIN_TYPE/$PLUGIN_NAME/$PLUGIN_NAME@$VERSION.so extensions/$PLUGIN_TYPE/$PLUGIN_NAME/*.go
+          ;;
         influx )
             go build -trimpath --buildmode=plugin -tags plugins -o extensions/$PLUGIN_TYPE/$PLUGIN_NAME/$PLUGIN_NAME@$VERSION.so extensions/$PLUGIN_TYPE/$PLUGIN_NAME/$PLUGIN_NAME.go
             ;;
