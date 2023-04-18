@@ -188,13 +188,6 @@ jobs:
           - sources/zmq
           - sources/sql
           - sources/video
-          - functions/accumulateWordCount
-          - functions/countPlusOne
-          - functions/echo
-          - functions/image
-          - functions/geohash
-          - functions/labelImage
-          - functions/tfLite
         arch:
           - linux/amd64
           - linux/arm64
