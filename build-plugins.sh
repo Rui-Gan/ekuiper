@@ -46,6 +46,7 @@ post(){
 build(){
     case $PLUGIN_NAME in
         zmq )
+          echo -e "！！！！！！！！！！！！！！！！！！！！！！！\n"
           echo "build zmq"
           if [ "$OS" = "debian" ]; then
             apt update && apt install -y pkg-config libczmq-dev
@@ -94,7 +95,7 @@ build(){
                 CGO_CFLAGS=-I/tmp/tensorflow CGO_LDFLAGS=-L$(pwd)/extensions/functions/tfLite/lib go build -trimpath --buildmode=plugin -o extensions/functions/tfLite/tfLite@$VERSION.so extensions/functions/tfLite/*.go
             ;;
         * )
-            echo $PLUGIN_NAME
+            echo -e "---------------------------------------------\n"
             go build -trimpath --buildmode=plugin -o extensions/$PLUGIN_TYPE/$PLUGIN_NAME/$PLUGIN_NAME@$VERSION.so extensions/$PLUGIN_TYPE/$PLUGIN_NAME/*.go
           ;;
     esac
