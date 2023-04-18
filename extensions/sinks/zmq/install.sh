@@ -50,14 +50,23 @@ case $DISTRO in \
     Debian|Ubuntu|Raspbian ) \
 	apt update \
 	&& apt upgrade \
-        && apt install -y libzmq3-dev 2> /dev/null \
+        && apt install -y libczmq-dev findutils 2> /dev/null \
     ;; \
     Alpine ) \
-        apk add libzmq \
+        apk add libzmq findutils \
     ;; \
     *) \
         yum install -y zeromq 2> /dev/null \
     ;; \
 esac
+
+LIBZMQ_PATH=$(find / -name "libzmq.so.5" -print -quit 2>/dev/null)
+if [ -n "$LIBZMQ_PATH" ]; then
+  echo "找到 libzmq.so.5 文件，路径为：$LIBZMQ_PATH"
+  echo "$LIBZMQ_PATH" > /etc/ld.so.conf
+  echo "已将路径添加到 /etc/ld.so.conf 文件中"
+else
+  echo "未找到 libzmq.so.5 文件"
+fi
     
 echo "install success";
