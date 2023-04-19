@@ -67,6 +67,19 @@ if [ -n "$LIBZMQ_PATH" ]; then
   echo "已将路径添加到 /etc/ld.so.conf 文件中"
 else
   echo "未找到 libzmq.so.5 文件"
+  case $DISTRO in \
+      Debian|Ubuntu|Raspbian ) \
+  	apt update \
+  	&& apt upgrade \
+          && apt install -y libzmq5 2> /dev/null \
+      ;; \
+      Alpine ) \
+          apk add zeromq-dev \
+      ;; \
+      *) \
+          yum install -y zeromq 2> /dev/null \
+      ;; \
+  esac
 fi
     
 echo "install success";
