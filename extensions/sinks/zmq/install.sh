@@ -48,39 +48,19 @@ Get_Dist_Name
 
 case $DISTRO in \
     Debian|Ubuntu|Raspbian ) \
-	apt update \
-	&& apt upgrade \
-        && apt install -y libczmq-dev findutils 2> /dev/null \
+	apt-get update \
+        && apt-get install -y libczmq-dev 2> /dev/null \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     ;; \
     Alpine ) \
-        apk add libzmq findutils \
+        apk add libzmq \
+        && echo $LD_LIBRARY_PATH
+        && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
     ;; \
     *) \
         yum install -y zeromq 2> /dev/null \
     ;; \
 esac
-
-LIBZMQ_PATH=$(find / -name "libzmq.so.5" -print -quit 2>/dev/null)
-if [ -n "$LIBZMQ_PATH" ]; then
-  echo "找到 libzmq.so.5 文件，路径为：$LIBZMQ_PATH"
-  echo "$LIBZMQ_PATH" > /etc/ld.so.conf
-  echo "已将路径添加到 /etc/ld.so.conf 文件中"
-else
-  echo "未找到 libzmq.so.5 文件"
-  case $DISTRO in \
-      Debian|Ubuntu|Raspbian ) \
-  	apt-get update \
-          && apt-get install -y libzmq5 2> /dev/null \
-          && apt-get clean \
-          && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-      ;; \
-      Alpine ) \
-          apk add zeromq-dev \
-      ;; \
-      *) \
-          yum install -y zeromq 2> /dev/null \
-      ;; \
-  esac
-fi
     
 echo "install success";
