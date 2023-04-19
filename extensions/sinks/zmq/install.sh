@@ -55,8 +55,8 @@ case $DISTRO in \
     ;; \
     Alpine ) \
         apk add libzmq \
-        && echo $LD_LIBRARY_PATH
-        && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
+        && echo $LD_LIBRARY_PATH \
+        && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64 \
     ;; \
     *) \
         yum install -y zeromq 2> /dev/null \
