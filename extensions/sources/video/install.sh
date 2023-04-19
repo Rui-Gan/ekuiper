@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright 2021-2022 EMQ Technologies Co., Ltd.
+# Copyright 2021-2023 EMQ Technologies Co., Ltd.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -53,7 +53,11 @@ case $DISTRO in \
         && apt install -y ffmpeg 2> /dev/null \
     ;; \
     Alpine ) \
-        apk add ffmpeg 2> /dev/null \
+        if ! apk add ffmpeg; then
+        echo "Failed to install ffmpeg" >&2
+      exit 1 \
+      ;fi
+        echo "ffmpeg installed successfully" \
     ;; \
     *) \
         yum install -y ffmpeg 2> /dev/null \
