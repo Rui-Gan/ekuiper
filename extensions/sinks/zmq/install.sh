@@ -69,9 +69,10 @@ else
   echo "未找到 libzmq.so.5 文件"
   case $DISTRO in \
       Debian|Ubuntu|Raspbian ) \
-  	apt update \
-  	&& apt upgrade \
-          && apt install -y libzmq5 2> /dev/null \
+  	apt-get update \
+          && apt-get install -y libzmq5 2> /dev/null \
+          && apt-get clean \
+          && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
       ;; \
       Alpine ) \
           apk add zeromq-dev \
