@@ -56,7 +56,7 @@ case $DISTRO in \
         && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     ;; \
     Alpine ) \
-        if ! apk add --no-cache libzmq; then
+        if ! apk add libzmq; then
           echo "Failed to install libzmq" >&2 
         exit 1 \
         ;fi
