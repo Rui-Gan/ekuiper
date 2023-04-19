@@ -48,15 +48,17 @@ Get_Dist_Name
 
 case $DISTRO in \
     Debian|Ubuntu|Raspbian ) \
-	apt-get update \
+	    apt-get update \
         && apt-get install -y libczmq-dev 2> /dev/null \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     ;; \
     Alpine ) \
-        apk add libzmq \
-        && echo $LD_LIBRARY_PATH \
-        && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64 \
+        if ! apk add --no-cache libzmq; then \
+          echo "Failed to install libzmq" >&2 \
+          exit 1 \
+        fi; \
+        echo "libzmq installed successfully" \
     ;; \
     *) \
         yum install -y zeromq 2> /dev/null \
