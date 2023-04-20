@@ -210,10 +210,6 @@ jobs:
             plugin: functions/tfLite
           - os: [alpine,"alpine"]
             plugin: sinks/tdengine
-          - os: [alpine,"alpine"]
-            plugin: sinks/zmq
-          - os: [ alpine,"alpine" ]
-            plugin: sources/zmq
 
     steps:
     - uses: actions/checkout@v3
