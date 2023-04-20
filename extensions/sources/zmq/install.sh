@@ -54,7 +54,11 @@ case $DISTRO in \
           && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     ;; \
     Alpine ) \
-        apk add libzmq \
+        if ! apk add libzmq; then
+          echo "Failed to install libzmq" >&2
+          exit 1 \
+        ;fi
+        echo "libzmq installed successfully" \
     ;; \
     *) \
         yum install -y zeromq 2> /dev/null \
