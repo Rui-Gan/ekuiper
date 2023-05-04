@@ -598,8 +598,9 @@ func TestEdgeXTemplate_Apply(t1 *testing.T) {
 		var payload []map[string]interface{}
 		json.Unmarshal([]byte(t.input), &payload)
 		dt := t.conf["dataTemplate"]
-		tf, _ := transform.GenTransform(cast.ToStringAlways(dt), "json", "", "")
+		tf, sf, _ := transform.GenTransform(cast.ToStringAlways(dt), "json", "", "")
 		vCtx := context.WithValue(ctx, context.TransKey, tf)
+		vCtx = context.WithValue(vCtx, context.SelectKey, sf)
 		result, err := ems.produceEvents(vCtx, payload[0])
 		if !reflect.DeepEqual(t.error, testx.Errstring(err)) {
 			t1.Errorf("%d. %q: error mismatch:\n  exp=%s\n  got=%s\n\n", i, t.input, t.error, err)

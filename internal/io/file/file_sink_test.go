@@ -283,8 +283,9 @@ func TestFileSink_Collect(t *testing.T) {
 	contextLogger := conf.Log.WithField("rule", "test2")
 	ctx := context.WithValue(context.Background(), context.LoggerKey, contextLogger)
 
-	tf, _ := transform.GenTransform("", "json", "", "")
+	tf, sf, _ := transform.GenTransform("", "json", "", "")
 	vCtx := context.WithValue(ctx, context.TransKey, tf)
+	vCtx = context.WithValue(ctx, context.SelectKey, sf)
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -442,8 +443,9 @@ func TestFileSinkRolling_Collect(t *testing.T) {
 	contextLogger := conf.Log.WithField("rule", "testRolling")
 	ctx := context.WithValue(context.Background(), context.LoggerKey, contextLogger)
 
-	tf, _ := transform.GenTransform("", "json", "", "")
+	tf, sf, _ := transform.GenTransform("", "json", "", "")
 	vCtx := context.WithValue(ctx, context.TransKey, tf)
+	vCtx = context.WithValue(ctx, context.SelectKey, sf)
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -572,8 +574,9 @@ func TestFileSinkRollingCount_Collect(t *testing.T) {
 	contextLogger := conf.Log.WithField("rule", "testRollingCount")
 	ctx := context.WithValue(context.Background(), context.LoggerKey, contextLogger)
 
-	tf, _ := transform.GenTransform("", "delimited", "", ",")
+	tf, sf, _ := transform.GenTransform("", "delimited", "", ",")
 	vCtx := context.WithValue(ctx, context.TransKey, tf)
+	vCtx = context.WithValue(ctx, context.SelectKey, sf)
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

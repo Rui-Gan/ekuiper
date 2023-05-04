@@ -490,3 +490,40 @@ func Test_itemToMap(t *testing.T) {
 		})
 	}
 }
+
+func TestSinkFields_Apply(t *testing.T) {
+	conf.InitConf()
+	transform.RegisterAdditionalFuncs()
+	var tests = []struct {
+		dt        string
+		format    string
+		schemaId  string
+		delimiter string
+		fields    []string
+		data      map[string]interface{}
+		result    [][]byte
+	}{
+		{
+			format: "json",
+			fields: []string{"a", "b"},
+			data:   map[string]interface{}{"a": "1", "b": "2", "c": "3"},
+			result: [][]byte{[]byte(`{"a":"1","b":"2"}`)},
+		},
+	}
+	contextLogger := conf.Log.WithField("rule", "TestSinkFields_Apply")
+	ctx := context.WithValue(context.Background(), context.LoggerKey, contextLogger)
+
+	for i, tt := range tests {
+		tf, sf, _ := transform.GenTransform(tt.dt, tt.format, tt.schemaId, tt.delimiter)
+		vCtx := context.WithValue(ctx, context.TransKey, tf)
+		vCtx = context.WithValue(ctx, context.SelectKey, sf)
+		vCtx = context.WithValue(vCtx, context.SelectFields, tt.fields)
+		mockSink := mocknode.NewMockSink()
+		mockSink.Collect(vCtx, tt.data)
+		time.Sleep(1 * time.Second)
+		results := mockSink.GetResults()
+		if !reflect.DeepEqual(tt.result, results) {
+			t.Errorf("%d \tresult mismatch:\n\nexp=%s\n\ngot=%s\n\n", i, tt.result, results)
+		}
+	}
+}

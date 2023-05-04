@@ -18,6 +18,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/lf-edge/ekuiper/internal/conf"
+	"github.com/lf-edge/ekuiper/internal/topo/context"
 	"github.com/lf-edge/ekuiper/pkg/api"
 	"github.com/lf-edge/ekuiper/pkg/cast"
 	"github.com/lf-edge/ekuiper/pkg/message"
@@ -233,6 +234,20 @@ func (m *fileSink) GetFws(ctx api.StreamContext, fn string, item interface{}) (*
 						i++
 					}
 				}
+			}
+			if ctx.Value(context.SelectFields) != nil {
+				fields := ctx.Value(context.SelectFields).([]string)
+				head := make([]string, 0)
+				m := make(map[string]struct{})
+				for _, h := range header {
+					m[h] = struct{}{}
+				}
+				for _, f := range fields {
+					if _, ok := m[f]; ok {
+						head = append(head, f)
+					}
+				}
+				header = head
 			}
 			sort.Strings(header)
 			headers = strings.Join(header, m.c.Delimiter)

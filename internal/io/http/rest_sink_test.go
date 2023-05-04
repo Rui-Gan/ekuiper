@@ -188,7 +188,7 @@ func TestRestSink_Apply(t *testing.T) {
 		contextLogger.Debugf(string(body))
 		fmt.Fprintf(w, string(body))
 	}))
-	tf, _ := transform.GenTransform("", "json", "", "")
+	tf, sf, _ := transform.GenTransform("", "json", "", "")
 	defer ts.Close()
 	for i, tt := range tests {
 		requests = nil
@@ -201,6 +201,7 @@ func TestRestSink_Apply(t *testing.T) {
 		s.Configure(tt.config)
 		s.Open(ctx)
 		vCtx := context.WithValue(ctx, context.TransKey, tf)
+		vCtx = context.WithValue(ctx, context.SelectKey, sf)
 		if ss.(bool) {
 			for _, d := range tt.data {
 				s.Collect(vCtx, d)
@@ -386,8 +387,9 @@ func TestRestSinkErrorLog(t *testing.T) {
 		s.Configure(config)
 		s.Open(context.Background())
 
-		tf, _ := transform.GenTransform("", "json", "", "")
+		tf, sf, _ := transform.GenTransform("", "json", "", "")
 		vCtx := context.WithValue(context.Background(), context.TransKey, tf)
+		vCtx = context.WithValue(vCtx, context.SelectKey, sf)
 		reqBody := []map[string]interface{}{
 			{"ab": "hello1"},
 			{"ab": "hello2"},
@@ -412,8 +414,9 @@ func TestRestSinkErrorLog(t *testing.T) {
 		}
 		s.Configure(config)
 		s.Open(context.Background())
-		tf, _ := transform.GenTransform("", "json", "", "")
+		tf, sf, _ := transform.GenTransform("", "json", "", "")
 		vCtx := context.WithValue(context.Background(), context.TransKey, tf)
+		vCtx = context.WithValue(vCtx, context.SelectKey, sf)
 		err := s.Collect(vCtx, []map[string]interface{}{
 			{"ab": "hello1"},
 			{"ab": "hello2"},

@@ -1,4 +1,4 @@
-// Copyright 2022 EMQ Technologies Co., Ltd.
+// Copyright 2022-2023 EMQ Technologies Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,15 +35,16 @@ import (
 )
 
 type SinkConf struct {
-	Concurrency  int    `json:"concurrency"`
-	RunAsync     bool   `json:"runAsync"` // deprecated, will remove in the next release
-	Omitempty    bool   `json:"omitIfEmpty"`
-	SendSingle   bool   `json:"sendSingle"`
-	DataTemplate string `json:"dataTemplate"`
-	Format       string `json:"format"`
-	SchemaId     string `json:"schemaId"`
-	Delimiter    string `json:"delimiter"`
-	BufferLength int    `json:"bufferLength"`
+	Concurrency  int      `json:"concurrency"`
+	RunAsync     bool     `json:"runAsync"` // deprecated, will remove in the next release
+	Omitempty    bool     `json:"omitIfEmpty"`
+	SendSingle   bool     `json:"sendSingle"`
+	DataTemplate string   `json:"dataTemplate"`
+	Format       string   `json:"format"`
+	SchemaId     string   `json:"schemaId"`
+	Delimiter    string   `json:"delimiter"`
+	BufferLength int      `json:"bufferLength"`
+	Fields       []string `json:"fields"`
 	conf.SinkConf
 }
 
@@ -110,14 +111,17 @@ func (m *SinkNode) Open(ctx api.StreamContext, result chan<- error) {
 				return err
 			}
 
-			tf, err := transform.GenTransform(sconf.DataTemplate, sconf.Format, sconf.SchemaId, sconf.Delimiter)
+			tf, sf, err := transform.GenTransform(sconf.DataTemplate, sconf.Format, sconf.SchemaId, sconf.Delimiter)
 			if err != nil {
 				msg := fmt.Sprintf("property dataTemplate %v is invalid: %v", sconf.DataTemplate, err)
 				logger.Warnf(msg)
 				return fmt.Errorf(msg)
 			}
 			ctx = context.WithValue(ctx.(*context.DefaultContext), context.TransKey, tf)
-
+			ctx = context.WithValue(ctx.(*context.DefaultContext), context.SelectKey, sf)
+			if sconf.Fields != nil {
+				ctx = context.WithValue(ctx.(*context.DefaultContext), context.SelectFields, sconf.Fields)
+			}
 			m.reset()
 			logger.Infof("open sink node %d instances", m.concurrency)
 			for i := 0; i < m.concurrency; i++ { // workers
