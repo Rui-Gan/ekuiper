@@ -643,7 +643,7 @@ func (v *ValuerEval) evalSetsExpr(lhs interface{}, op ast.Token, rhsSet interfac
 
 func (v *ValuerEval) evalJsonExpr(result interface{}, op ast.Token, expr ast.Expr) interface{} {
 	switch op {
-	case ast.ARROW:
+	case ast.ARROW, ast.DOT:
 		if val, ok := result.(map[string]interface{}); ok {
 			switch e := expr.(type) {
 			case *ast.JsonFieldRef:

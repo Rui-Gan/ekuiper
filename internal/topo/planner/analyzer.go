@@ -16,12 +16,13 @@ package planner
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/lf-edge/ekuiper/internal/binder/function"
 	"github.com/lf-edge/ekuiper/internal/schema"
 	"github.com/lf-edge/ekuiper/internal/xsql"
 	"github.com/lf-edge/ekuiper/pkg/ast"
 	"github.com/lf-edge/ekuiper/pkg/kv"
-	"strings"
 )
 
 type streamInfo struct {
@@ -223,7 +224,7 @@ func allAggregate(expr ast.Expr) (r bool) {
 		switch f := expr.(type) {
 		case *ast.BinaryExpr:
 			switch f.OP {
-			case ast.SUBSET, ast.ARROW:
+			case ast.SUBSET, ast.ARROW, ast.DOT:
 				// do nothing
 			default:
 				r = allAggregate(f.LHS) && allAggregate(f.RHS)
