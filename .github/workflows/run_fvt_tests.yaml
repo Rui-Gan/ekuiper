@@ -115,7 +115,7 @@ jobs:
            [ "$(xmllint --format --xpath '/testResults/sample/@rc' $file | sed -r 's/ /\n/g;' | sort -u | grep -E 'rc=\"[45][0-9][0-9]\"|rc=\"\"')" != "" ]; then
             echo -e "---------------------------------------------\n"
             echo "FVT tests error for $file"
-            cat file
+            cat $file
             exit 1
           fi
         done
